@@ -1,0 +1,31 @@
+.model small
+.stack 100h
+.data
+    m db  'i love bangladesh $'
+.code
+main proc
+       ; 1-> single Key input.
+       ; 2-> single char output.
+       ; 9-> char string output  
+    mov ax,@data
+    mov ds,ax
+    
+    mov ah,9           ;low effective address
+    lea dx,m
+    int 21h              ;int - intruptor 21 call dx data.
+    
+    
+    
+    mov ah,1       ;take input
+    int 21h
+    mov bl,al
+    
+    mov ah,2
+    mov dl,bl 
+    int 21h
+    
+    exit:
+    mov ah,4ch
+    int 21h
+    main endp
+end main
